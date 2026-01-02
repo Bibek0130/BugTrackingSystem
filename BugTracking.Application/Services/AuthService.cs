@@ -1,0 +1,22 @@
+﻿using BugTracking.Application.Interfaces.Repositories;
+using BugTracking.Application.Interfaces.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BugTracking.Application.Services
+{
+    public class AuthService : IAuthService
+    {
+        private readonly IAuthRepository _authRepository;
+
+        public AuthService(IAuthRepository authRepository)
+        {
+            _authRepository = authRepository;
+        }
+
+
+    }
+}
