@@ -1,5 +1,7 @@
 ﻿using BugTracking.Application.Interfaces.Repositories;
 using BugTracking.Domain.Entities;
+using BugTracking.Infrastructure.Persistence;
+using BugTracking.Infrastructure.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,9 @@ namespace BugTracking.Infrastructure.Repositories
             _context = context;
         }
 
-        public Task<Bug> GetIdByAsync(Guid Id)
+        public async Task<Bug?> GetIdByAsync(Guid Id)
         {
-            return _context.IdByAsync(Id);
+            return await _context.Bugs.FindAsync(Id);
         }
     }
 }
