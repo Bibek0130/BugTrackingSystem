@@ -1,6 +1,7 @@
 function BugForm() {
   return (
-    <p>Hello world!</p>
+   // <p>Bug Form</p>
+      <h1>Report a Bug</h1>
   );
 }
 

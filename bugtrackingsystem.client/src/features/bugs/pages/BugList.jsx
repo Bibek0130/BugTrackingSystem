@@ -1,6 +1,6 @@
 function BugList() {
   return (
-    <p>Hello world!</p>
+    <p>Bug List</p>
   );
 }
 

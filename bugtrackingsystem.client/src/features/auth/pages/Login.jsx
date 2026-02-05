@@ -1,6 +1,6 @@
 function Login() {
   return (
-    <p>Hello world!</p>
+    <p>Login Page</p>
   );
 }
 
