@@ -2,17 +2,22 @@
 // Applies layout
 
 import {Routes, Route} from 'react-router-dom';
-import Mainlayout from './layout/MainLayout.jsx';
-import BugForm from '../features/bugs/pages/BugForm.jsx';
-import BugList from '../features/bugs/pages/BugList.jsx';
+import CustomNav from './layout/MainLayout.jsx';
+import CreateBug from '../features/bugs/pages/BugForm.jsx';
+import MyBugs from '../features/bugs/pages/BugList.jsx';
+import Dashboard from '../features/dashboard/pages/DashBoard.jsx';
 
 function App() {
   return (
     <Routes>
-      <Route element={<Mainlayout />} >
-        <Route index element={<h1>Welcome to Bug Tracking System</h1>}/>
-         <Route path="/report-bug" element={<BugForm />}/> 
-         <Route path="/bug-list" element={<BugList />} />
+      <Route element={<CustomNav li={[
+        ["Dashboard", "dashboard.svg"],
+        ["My Bugs", "myBugs.jpg"],
+        ["Create Bug", "create.svg"]
+      ]}/>} >
+        <Route index element={<Dashboard />}/>
+         <Route path="/create-bug" element={<CreateBug />}/> 
+         <Route path="/my-bugs" element={<MyBugs />} />
     </Route>
     </Routes>
   );

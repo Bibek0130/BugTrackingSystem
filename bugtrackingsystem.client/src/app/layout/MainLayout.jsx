@@ -1,24 +1,59 @@
 import { Outlet, Link } from "react-router-dom";
+import React, { useState } from "react";
 import './MainLayout.css';
 
 
-export default function MainLayout() {
-  return (
-    <div className="layout">
-        <header>
-            <h2>Bug Tracking System</h2>
-        </header>
 
-        <nav>
-            <Link to="/">Home</Link> | {" "}
-            <Link to="/report-bug">Report a Bug</Link> | {" "}
-            <Link to="/bug-list">Bug List</Link>
-        </nav>
+const CustomNav =({li}) =>{
+    const [window, setWindow] = useState(false); //window  is false when the menu is closed and true when the menu is opened.
 
-        <main>
-            <Outlet />
-        </main>
+    //logic for opening and closing the menu
+  let openClose = () => {
+    if (window === false) {
+      setWindow(true);
+    } else {
+      setWindow(false);
+  }
 
+};
+return(
+<div className="app-container">
+    <nav
+      className="navbar-menu"
+      onClick={openClose}
+      style={{ width: window === false ? 250 : 60 }}
+    >
+      <div className="burger" zxc>
+        <img src="menu.png" alt="burger" />
+      </div>
+      <ul className="navbar__list">
+        {li.map((item, i) => {
+            const path = `/${item[0].toLowerCase().replace(/\s/g, "-")}`;
+            return (
+              <li key={i} className="navbar__li-box">
+                {/* Use the Link component here */}
+                <Link to={path} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                  <img
+                    src={item[1]}
+                    alt={item[0]}
+                    style={{ paddingLeft: window ? 17 : 27, width: '20px' }}
+                  />
+                  {!window && (
+                    <span className="navbar__li" style={{ marginLeft: '10px' }}>
+                      {item[0]}
+                    </span>
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+    </nav>
+        <main style={{ marginLeft: window === false ? 200 : 350, transition: 'margin-left 0.3s' }}>
+        <Outlet /> 
+      </main>
     </div>
-  );
-}
+);
+};
+
+export default CustomNav;

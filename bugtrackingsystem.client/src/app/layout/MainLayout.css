@@ -12,24 +12,76 @@
 }
 
 /* Body below header */
-.body {
+/* .body {
   display: flex;
   flex: 1;
-}
+} */
 
 /* Sidebar on left */
-.sidebar {
+/* .sidebar {
   width: 220px;
   background-color: #f1f5f9;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
+} */
 
 /* Main content area */
 .content {
   flex: 1;
   padding: 1.5rem;
   background-color: #ffffff;
+} 
+
+
+/* Burger and menu */
+.navbar-menu {
+  height:100vh;
+  background-color: white;
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.15);
+  transition: all 0.5s ease;
+  
+}
+.burger{
+  display:flex;
+  justify-content: flex-end;
+}
+.burger img {
+  padding: 25px 8px 0px 0px;
+  cursor: pointer;
+}
+.navbar__list {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.navbar__li {
+  display: inline-block;
+  padding:0px 0px 0px 12px;
+  position: relative;
+  top:2.5px;
+  font-size: 16px;
+  letter-spacing: 0px;
+  line-height: 38px;
+  color: black;
+  font-family: "Lato";
+  font-weight: 400;
+}
+.navbar__li-box:first-child {
+  margin-top:53px;
+  
+}
+.navbar__li-box {
+  height: 43px;
+  margin-top:15px;
+}
+.navbar__li-box:hover {
+  border-left: 7px solid purple;
+  cursor: pointer;
+}
+
+.app-container {
+  display: flex; /* Activates Flexbox on the parent */
+  min-height: 100vh; /* Ensures the container takes up the full screen height */
+
 }

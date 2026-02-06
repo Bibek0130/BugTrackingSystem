@@ -1,6 +1,9 @@
 function BugList() {
+  alert("My bugs");
   return (
-    <p>Bug List</p>
+    <div>
+      <h1>My Bugs</h1>
+    </div>
   );
 }
 
