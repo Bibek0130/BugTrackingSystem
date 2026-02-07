@@ -31,7 +31,6 @@ return(
             const path = `/${item[0].toLowerCase().replace(/\s/g, "-")}`;
             return (
               <li key={i} className="navbar__li-box">
-                {/* Use the Link component here */}
                 <Link to={path} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                   <img
                     src={item[1]}
