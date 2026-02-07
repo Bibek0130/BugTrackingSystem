@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {createRoot} from 'react-dom/client';
+import ConfirmModal from '../../../components/common/ConfirmModal';
 
 
 function BugForm() {
@@ -7,6 +8,7 @@ function BugForm() {
  const [description, setDescription] = useState('');
  const [severity, setSeverity]=useState('Low');
  const [status, setStatus]=useState('Open');
+ const [showModal, setShowModal] = useState(false);
 
  function handleChangeTitle(e){
   setTitle(e.target.value);
@@ -17,21 +19,34 @@ function BugForm() {
  }
 
  function handleChangeStatus(e){
-  setStatus(e/target.value);
+  setStatus(e.target.value);
  }
 
  function handleChangeSeverity(e){
   setSeverity(e.target.value);
  }
 
+ //handlilng confirmation
+ function handleConfirm(){
+  console.log('Confirmed submission');
+  
+  setShowModal(false);
+ }
+
  //habling submit
  function handleSubmit(e){
   e.preventDefault();
-  console.log((('Form submitted with title: ') + title));
-  console.log((('Form submitted with description: ') + description));
-  console.log((('Form submitted with severity: ') + severity));
-  console.log((('Form submitted with status: ') + status));
- }
+//validation
+  if (title.trim() === '') {
+    alert('Please enter a title for the bug');
+    return;
+  }
+  if (description.trim() === '') {
+    alert('Please enter a description for the bug');
+    return;
+  }
+   setShowModal(true);
+}
  
   return (
    <>
@@ -39,15 +54,15 @@ function BugForm() {
     <form>
       {/* // Title Input   */}
       <div className='form-group'>
-         <label >Enter your title: 
-            <input className="form-control" type="text" value={title} onChange={handleChangeTitle} />
+         <label>Enter your title: 
+            <input required className="form-control" type="text" value={title} onChange={handleChangeTitle} />
           </label>
       </div>
 
       {/* // Description Input   */}
       <div className='form-group'>
          <label >Description 
-          <textarea className="form-control" type="text" value={description} onChange={handleChangeDescription}>  </textarea>
+          <textarea required className="form-control" type="text" value={description} onChange={handleChangeDescription}>  </textarea>
           </label>
       </div>
 
@@ -77,9 +92,17 @@ function BugForm() {
         <label>
          <button className='btn btn-primary btn-sm' type="button" value='Submit' onClick={handleSubmit}>Submit</button>
         </label>
+
+        {/* // Confirmation Modal */}
+      
+        <ConfirmModal
+        isOpen={showModal}
+        title="Confirm Submit"
+        message="Are you sure you want to submit this bug?"
+        onConfirm={handleConfirm}
+        onCancel={() => setShowModal(false)}
+      />
       </div>
-      
-      
     </form>
    </>
   );
